@@ -1,3 +1,22 @@
+def index_find_regex(pattern, string, ignore_case = True):
+    """ Returns the spans of where the pattern is found in
+        the string. Ignore_case is self-explanatory.
+
+        Example:
+        index_find_regex("abc", "abcdeabc")
+
+        Returns:
+        [(0, 3), (5, 8)]
+    """
+    import re
+    if ignore_case:
+        pattern = pattern.lower()
+        string = string.lower()
+    a = list(re.finditer(pattern, string))
+    spans = [match.span() for match in a]
+    return spans
+
+
 def find_pattern_in_file(file, pattern):
     """ Returns a list of regex matches from the named file.
 
