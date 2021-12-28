@@ -12,7 +12,6 @@ def find_all_no_regex(substring, string, ignore_case = True):
         substring = substring.lower()
         string = string.lower() 
 
-    
     matches = []
     start = 0
     while True:
@@ -21,24 +20,22 @@ def find_all_no_regex(substring, string, ignore_case = True):
         matches.append((start, start + len(substring)))
         start += len(substring) # use start += 1 to find overlapping matches
 
-
-def index_find_regex(pattern, string, ignore_case = True):
+def find_all_regex(pattern, string, ignore_case = True):
     """ Returns the spans of where the pattern is found in
         the string. Ignore_case is self-explanatory.
 
         Example:
-        index_find_regex("abc", "abcdeabc")
+        find_all_regex("abc", "abcdeabc")
 
         Returns:
         [(0, 3), (5, 8)]
     """
-    import re
     if ignore_case:
         pattern = pattern.lower()
         string = string.lower()
     a = list(re.finditer(pattern, string))
     spans = [match.span() for match in a]
-    return spans
+    return [string] + spans
 
 
 def find_pattern_in_file(file, pattern):
