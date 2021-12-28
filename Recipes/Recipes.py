@@ -6,20 +6,20 @@ def find_all_no_regex(substring, string, ignore_case = True):
         find_all_no_regex("abc", "abcdeabc")
 
         Returns:
-        [(0, 3), (5, 8)]
-        
+        [(0, 3), (5, 8)]        
     """
-    import re
+    if ignore_case:
+        substring = substring.lower()
+        string = string.lower() 
+
+    
     matches = []
-    counter = index = 0
+    start = 0
     while True:
-        index = string.find(substring)
-        if index == -1: break
-        matches.append((index + counter, index + counter + len(substring)))
-        counter += len(substring)
-        index += len(substring)
-        string = string[index:]
-    return matches
+        start = string.find(substring, start)
+        if start == -1: return matches
+        matches.append((start, start + len(substring)))
+        start += len(substring) # use start += 1 to find overlapping matches
 
 
 def index_find_regex(pattern, string, ignore_case = True):
