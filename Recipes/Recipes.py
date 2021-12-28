@@ -1,3 +1,27 @@
+def find_all_no_regex(substring, string, ignore_case = True):
+    """ Returns the spans where the substring is in the string.
+        Ignore_case is self-explanatory.
+
+        Example:
+        find_all_no_regex("abc", "abcdeabc")
+
+        Returns:
+        [(0, 3), (5, 8)]
+        
+    """
+    import re
+    matches = []
+    counter = index = 0
+    while True:
+        index = string.find(substring)
+        if index == -1: break
+        matches.append((index + counter, index + counter + len(substring)))
+        counter += len(substring)
+        index += len(substring)
+        string = string[index:]
+    return matches
+
+
 def index_find_regex(pattern, string, ignore_case = True):
     """ Returns the spans of where the pattern is found in
         the string. Ignore_case is self-explanatory.
