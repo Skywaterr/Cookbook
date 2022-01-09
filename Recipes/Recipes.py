@@ -116,7 +116,6 @@ def OrderedDict_to_string(dictionary, starttag = "<", delimiter = ", ",
     return start
 
 
-    
 def radians_to_degrees(radians):
     from math import pi
     return radians * 180/pi
@@ -124,6 +123,22 @@ def radians_to_degrees(radians):
 def degrees_to_radians(degrees):
     from math import pi
     return degrees * pi/180
+
+
+def dec_to_hex(decimal, starttag = "#"):
+    """ Convert a decimal to a hex. Starttag will
+        precede the result if given. """
+    string = hex(decimal)[2:]
+    if starttag: return starttag + string
+    return string
+
+
+def rgb_to_hexstring(r, g, b):
+    """ Change r,g,b values between 0-255 to a hexstring. """
+    red = dec_to_hex(r)
+    green = dec_to_hex(g, None)
+    blue = dec_to_hex(b, None)
+    return red + green + blue
 
 
 
