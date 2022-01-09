@@ -129,6 +129,7 @@ def dec_to_hex(decimal, starttag = "#"):
     """ Convert a decimal to a hex. Starttag will
         precede the result if given. """
     string = hex(decimal)[2:]
+    if len(string) < 2: string = "0" + string
     if starttag: return starttag + string
     return string
 
