@@ -75,6 +75,47 @@ def add_url_parameters(url, parameters):
     query.update(parameters)          # Put in new params
     url_parts[4] = urlencode(query)   # Make new url
     return urlunparse(url_parts)
+
+
+
+def OrderedDict_to_string(dictionary, starttag = "<", delimiter = ", ",
+                          endtag = ">", kwstring = False, valstring = False):
+    """ Turns an ordereddict to a string. It really can be any dictionary,
+        but you should use an ordereddict if you want to keep order in the
+        returned string.
+
+        starttag: The start of the string
+        delimiter: The string used to seperate each key, value pair
+        endtag: The end of the string
+        kwstring: If True, all keyword STRINGS (and only strings) will have quotes.
+        valstring: If True, all value strings will have quotes.
+
+        Example:
+        from collections import OrderedDict
+        o = OrderedDict()
+        o[1] = "one"
+        o["two"] = 2
+        OrderedDict_to_string(o)
+
+        Returns:
+        <1=one, two=2>
+    """
+    
+    start = starttag; end = endtag
+    for key in dictionary:
+        if kwstring: start += repr(key)
+        else: start += str(key)
+        start += "="
+
+        if valstring: start += repr(str(dictionary[key]))
+        else: start += str(dictionary[key])
+        start += delimiter
+
+    start = start[:-len(delimiter)]  # Chop off the last delimiter
+    start += end
+    return start
+
+
     
 def radians_to_degrees(radians):
     from math import pi
