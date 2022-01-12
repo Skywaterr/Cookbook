@@ -141,5 +141,18 @@ def rgb_to_hexstring(r, g, b):
     blue = dec_to_hex(b, None)
     return red + green + blue
 
+def classExists(classname):
+    """ Return True if a class with the given name exists in this namespace. """
+    class A: pass
+    try:
+        if type(eval(classname)) == type (A): return True
+        return False
+    except: return False
 
+def methodExists(classname, methodname):
+    """ Return True if the class has a method named methodname. """
+    if classExists(classname):
+        if hasattr(eval(classname), methodname) and callable(eval(classname).__dict__[methodname]):
+            return True
+    return False
 
