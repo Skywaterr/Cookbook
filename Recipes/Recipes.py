@@ -1,3 +1,18 @@
+def traverse_list_backwards(list):
+    """ Go through a list backwards without reversing it.
+
+        Example:
+        for x in traverse_list_backwards([1,2,3]): print(X)
+
+        Returns:
+        3
+        2
+        1
+    """
+    length = len(list)
+    for x in range(-1, -length - 1, -1):
+        yield list[x]
+
 def find_all_no_regex(substring, string, ignore_case = True):
     """ Returns the spans where the substring is in the string.
         Ignore_case is self-explanatory.
@@ -6,11 +21,11 @@ def find_all_no_regex(substring, string, ignore_case = True):
         find_all_no_regex("abc", "abcdeabc")
 
         Returns:
-        [(0, 3), (5, 8)]        
+        [(0, 3), (5, 8)]
     """
     if ignore_case:
         substring = substring.lower()
-        string = string.lower() 
+        string = string.lower()
 
     matches = []
     start = 0
@@ -100,7 +115,7 @@ def OrderedDict_to_string(dictionary, starttag = "<", delimiter = ", ",
         Returns:
         <1=one, two=2>
     """
-    
+
     start = starttag; end = endtag
     for key in dictionary:
         if kwstring: start += repr(key)
@@ -155,4 +170,3 @@ def methodExists(classname, methodname):
         if hasattr(eval(classname), methodname) and callable(eval(classname).__dict__[methodname]):
             return True
     return False
-
