@@ -1,3 +1,30 @@
+def nth_number(n, _list):
+    """ If n is a positive integer, find the nth largest distinct number.
+        If n is a negative integer, find the nth smallest distinct number.
+        n cannot be zero.
+
+        If abs(n) is larger than the number of distinct numbers
+        in the list, return the (if n is positive) smallest /
+        (if n is negative) largest number in the list.
+
+        Example:
+        nth_number(-2, [1,1,2,3,4,5])  # Find the second smallest number
+
+        Returns:
+        2
+        """
+
+    if type(n) != int: raise TypeError("N must be an integer")
+    if n == 0: raise ValueError("Cannot be zero")
+    s = set(_list)  # Get rid of duplicates
+    l = list(s)
+    l.sort()        # Sorted from least to greatest
+    if n > 0 and n >= len(l): return l[0]
+    elif n > 0 and n < len(l): return l[-n]
+    elif n < 0 and -n > len(l): return l[-1]
+    elif n < 0 and -n <= len(l): return l[-n-1]
+
+
 def traverse_list_backwards(list):
     """ Go through a list backwards without reversing it.
 
